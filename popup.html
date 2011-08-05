@@ -1,0 +1,69 @@
+<style>
+
+  body {
+    min-width:357px;
+    overflow-x:hidden;
+    color: #333;
+    font: normal 1em/1.5 Georgia, serif;
+    padding: 0 15px;
+    font-size: 0.95em;
+  }
+  
+  h1, h2, h3, h4, h5, h6 { color: #111111; font-weight: normal; margin: 0; padding: 0; }
+  
+  .titleLink {
+    font-size: 1.3em;
+    line-height: 1;
+    margin-bottom: 1em;
+  }
+  
+  a:link, a:visited, a:active {
+    color: #C00906;
+    text-decoration: none;
+  }
+  
+  .postContainer {
+    margin-top: 20px;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 20px;
+  }
+
+</style>
+
+<script>
+  var req = new XMLHttpRequest();
+  req.open(
+      "GET",
+      "http://rubylove.info/rss",
+      true);
+  req.onload = showPosts;
+  req.send(null);
+  
+  function showPosts() {
+    var xmlResponse = req.responseXML;
+    var items = req.responseXML.getElementsByTagName("item");
+  
+    for(var i=0; i<items.length; i++) {
+      var item = items[i];
+      var itemTitle = item.childNodes[0].firstChild.nodeValue
+      var itemDesc  = item.childNodes[1].firstChild.nodeValue
+      var itemLink  = item.childNodes[2].firstChild.nodeValue
+  
+      var postContainer = document.createElement("div")
+      postContainer.className = "postContainer";
+      document.body.appendChild(postContainer);
+  
+      var title = document.createElement("a");
+      title.innerHTML = itemTitle;
+      title.href = itemLink;
+      title.className = "titleLink";
+      title.target = "_blank";
+      postContainer.appendChild(title);
+  
+      var desc = document.createElement("p");
+      desc.innerHTML = itemDesc;
+      postContainer.appendChild(desc);
+    }
+  }
+</script>
+

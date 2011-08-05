@@ -1,0 +1,17 @@
+{
+  "name": "iluvruby",
+  "version": "1.0",
+  "description": "Interesting facts about Ruby programming language.",
+  "homepage_url": "http://rubylove.info",
+  "browser_action": {
+    "default_icon": "ruby64.png",
+    "popup": "popup.html"
+  },
+  "icons": {
+    "64": "ruby64.png",
+    "128": "ruby128.png"
+  },
+  "permissions": [
+    "http://rubylove.info/"
+  ]
+}
